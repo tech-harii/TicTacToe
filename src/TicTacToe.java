@@ -1,25 +1,40 @@
-/**
- * TicTacToe
- * UC1 initializes and displays an empty Tic-Tac-Toe board in a proper
- * grid format. This use case introduces 2D arrays, nested loops,
- * and formatted console output.
- */
+import java.util.Random;
 
 public class TicTacToe {
 
-    static char[][] board = new char[3][3];
+    static boolean isHumanTurn;
+    static char humanSymbol;
+    static char computerSymbol;
 
     public static void main(String[] args) {
-        initializeBoard();
-        printBoard();
+        tossAndAssignSymbols();
+        displayTossResult();
     }
 
-    static void initializeBoard() {
-    }
+    static void tossAndAssignSymbols() {
+        Random random = new Random();
 
-    static void printBoard() {
-        System.out.println("-----------");
-        for (int row = 0; row < 3; row++) {
+        isHumanTurn = random.nextBoolean();
+
+        if (isHumanTurn) {
+            humanSymbol = 'X';
+            computerSymbol = 'O';
+        } else {
+            humanSymbol = 'O';
+            computerSymbol = 'X';
         }
+    }
+
+    static void displayTossResult() {
+        if (isHumanTurn) {
+            System.out.println("You won the toss!");
+            System.out.println("You play first.");
+        } else {
+            System.out.println("Computer won the toss!");
+            System.out.println("Computer plays first.");
+        }
+
+        System.out.println("Your symbol: " + humanSymbol);
+        System.out.println("Computer symbol: " + computerSymbol);
     }
 }
